@@ -30,9 +30,10 @@ class User < ActiveRecord::Base
     end
   end
 
-
-
+  def round_score(round)
+    trues = round.guesses.where("attempt = ?", true).count
+    total_guesses = round.guesses.count
+    score = (trues.to_f / total_guesses) * 100
+  end
 
 end
-
-
