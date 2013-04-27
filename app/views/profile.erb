@@ -4,8 +4,9 @@
       <ul class="nav nav-pills">
         <li class="dropdown-submenu">Name: <%=@user.name%></li>
         <li class="dropdown-submenu">Email: <%=@user.email%></li>
-        <li class="dropdown-submenu">Games: <%=@user.rounds.each do |round|%></li>
-        <% round.
+        <% @user.rounds.each do |round| %>
+          <li class="dropdown-submenu"> Game Number: <%=round.id%>, Score: <%=@user.round_score(round)%></li>
+        <% end %>
       <ul>
   </div>
 

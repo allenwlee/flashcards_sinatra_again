@@ -39,7 +39,7 @@ end
 get '/profile' do
   @user = User.find(session[:id])
   @deck = Deck.all
-
+  
   erb :profile
 
 end
