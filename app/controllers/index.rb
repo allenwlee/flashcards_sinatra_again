@@ -4,7 +4,6 @@ get '/' do
 end
 
 get '/sign_up' do
-
   erb :sign_up
 end
 
@@ -27,13 +26,21 @@ end
 end
 
 post '/sign_up' do
- @user = User.create(params[:user])
- if @user.valid?
-  session[:id] = @user.id
-  redirect "/#{@user.id}/profile"
-else
-  @error = "invalid user creation"
-  erb :index
+  @user = User.create(params[:user])
+  if @user.valid?
+    session[:id] = @user.id
+    redirect "/#{@user.id}/profile"
+  else
+    @error = "invalid user creation"
+    erb :index
+  end
 end
 
+get '/profile' do
+  @user = User.find(session[:id])
+  @deck = Deck.all
+
+  erb :profile
+
 end
+
