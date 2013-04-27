@@ -10,9 +10,6 @@ end
 
 
 post '/login' do
-  puts params
-  p params[:user][:email]
-  p params[:user][:password_hash]
   @user = User.where("email = ?", params[:user][:email]).first
   if @user.password == params[:user][:password]
     puts "Logging in."
@@ -22,4 +19,9 @@ post '/login' do
     @valid_user = false  # might change way to display errors for vissssews
     erb :index
   end
+end
+
+post '/sign_up' do
+ @user = User.create(params[:user])
+ erb :index
 end
