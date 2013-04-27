@@ -11,17 +11,29 @@ end
 
 post '/login' do
   @user = User.where("email = ?", params[:user][:email]).first
-  if @user.password == params[:user][:password]
-    puts "Logging in."
+  if @user
+    if @user.password == params[:user][:password]
+      puts "Logging in."
     session[:id] = @user.id  #maybe we can store session identification another way
-    erb :member_page
+    redirect "/#{@user.id}/profile"
   else
-    @valid_user = false  # might change way to display errors for vissssews
+    @error = "Invalid Password"
     erb :index
   end
+else
+  @error = "Invalid Email"
+  erb :index
+end
 end
 
 post '/sign_up' do
  @user = User.create(params[:user])
- erb :index
+ if @user.valid?
+  session[:id] = @user.id
+  redirect "/#{@user.id}/profile"
+else
+  @error = "invalid user creation"
+  erb :index
+end
+
 end

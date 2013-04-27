@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => true
   validates :name, :email, :password, :presence => true
 
-  before_save :valid_email
-  before_save :min_password_length
+  validate :valid_email
+  validate :min_password_length
 
   include BCrypt
 
