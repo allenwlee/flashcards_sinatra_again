@@ -1,5 +1,3 @@
-
-
 User.create(name: "mike", email: "m@ike.com", password: "viewsonic")
 
 
@@ -18,6 +16,4 @@ end
 CSV.foreach('state_capitals.csv') do |row|
   @state_capitals_deck.cards << Card.create(question: row[0], answer: row[1])
 end
-
-
 
