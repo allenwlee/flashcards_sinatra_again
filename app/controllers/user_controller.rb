@@ -43,6 +43,15 @@ get '/:id/profile' do
   erb :profile
 end
 
+get '/logout' do
+  session.clear
+  erb :index
+end
+
+get '/_navbar' do
+  erb :_navbar
+end
+
 # get '/:id/:deck/:round_id' do
   
 #   @deck = Deck.find_by_category(params[:deck.id])
