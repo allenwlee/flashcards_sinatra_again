@@ -1,10 +1,11 @@
-<h1>Category 1</h1>
+<h1><%= @deck.category %></h1>
 
 <ul>
-  <% (1..5).each do |num| %>
+  <% @deck.cards.each do |card| %>
   <li>
-    <p><%= num %></p>
-    <form class="<%= num %>">
+    <p><%= card.question %></p>
+    <form class="inactive" action="/guess" method='post'>
+      <input type="hidden" value="<%= card.id %>" name="card[id]">
       <input type="text" placeholder="type you answer here" name="user_input">
       <input type="submit" value="submit">
     </form>
