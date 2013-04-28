@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="hero-unit">
+      <h3>Your Profile</h3>
+      <ul class="nav nav-pills">
+        <li class="dropdown-submenu">Name: <%=@user.name%></li>
+        <li class="dropdown-submenu">Email: <%=@user.email%></li>
+        <% @user.rounds.each do |round| %>
+          <li class="dropdown-submenu"> Game Number: <%=round.id%>, Score: <%=@user.round_score(round)%></li>
+        <% end %>
+      <ul>
+  </div>
+
+  <a href="/sign_up">Not a member? Click here to sign up!</a>
+
+  <span class="errors"><%= @error %></span>
+</div>

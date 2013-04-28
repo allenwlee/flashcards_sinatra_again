@@ -1,12 +1,14 @@
-<div>
+<div class="container">
+<div class="hero-unit">
   <form action="/login" method="post">
     Login here:
-    Email: <input type="text" name="user[email]">
-    Password: <input type="text" name="user[password]">
-    <input type="submit" value="Submit!">
+    Email: <input type="text" class="input-block-level" name="user[email]">
+    Password: <input type="text" class="input-block-level" name="user[password]">
+    <input type="submit" class="btn btn-primary btn-large" value="Submit!">
   </form>
 </div>
 
 <a href="/sign_up">Not a member? Click here to sign up!</a>
 
 <span class="errors"><%= @error %></span>
+</div>
