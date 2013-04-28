@@ -1,10 +1,15 @@
 <h1><%= @deck.category %></h1>
-
+<% first = true %>
 <ul>
   <% @deck.cards.each do |card| %>
-  <li>
+  <% if first == true %>
+    <li class="active">
+    <% first = false %>
+  <% else %>
+    <li class="inactive">
+  <% end %>
     <p><%= card.question %></p>
-    <form class="inactive" action="/guess" method='post'>
+    <form action="/guess" method='post'>
       <input type="hidden" value="<%= card.id %>" name="card[id]">
       <input type="text" placeholder="type you answer here" name="user_input">
       <input type="submit" value="submit">
@@ -13,13 +18,22 @@
   <% end %>
 </ul>
 
-<!-- // <script>
-// // $(document).ready(function(){
-// //   $('li form').on('submit', function(){
-// //     $('li form').removeClass('active');
-// //     $('li form').next().addClass('active');
+<script>
+$(document).ready(function(){
+  $('li form').on('submit', function(event){
+    event.preventDefault();
+    var parent = $(this).parent();
+    var data = $(this).serialize()
+    $.post('/guess', data)
+    .done(function(data){
+      debugger
+      alert("hey");
+      parent.removeClass('active');
+      parent.addClass("inactive");
+      parent.next().removeClass('inactive')
+      parent.next().addClass('active');
+    }); 
+  });
+});
 
-//   });
-// });
-
-// </script> -->
+</script>

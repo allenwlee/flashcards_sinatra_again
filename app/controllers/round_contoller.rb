@@ -4,7 +4,7 @@ get "/round" do
 
 end
 
-gets '/user/:deck_id/round/new' do
+get '/user/:deck_id/round/new' do
   @user = current_user
   @round = Round.create(user_id: @user.id, deck_id: params[:deck_id])
   session[:round] = @round.id
@@ -21,5 +21,5 @@ post '/guess' do
     @guess =Guess.create(attempt: 0, card_id: @card.id, round_id: session[:round])
   end
   @round.guesses << @guess
-  redirect "/:user_id/:deck_id/round/#{session[:round]}"
+  # redirect "/:user_id/:deck_id/round/#{session[:round]}"
 end

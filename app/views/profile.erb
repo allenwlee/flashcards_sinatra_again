@@ -1,20 +1,20 @@
 <div class="container">
   <div class="hero-unit">
       <h3>Your Profile</h3>
-      <ul class="nav nav-pills">
+      <ul>
         <li class="dropdown-submenu">Name: <%=@user.name%></li>
         <li class="dropdown-submenu">Email: <%=@user.email%></li>
         <% @user.rounds.each do |round| %>
           <li class="dropdown-submenu"> Game Number: <%=round.id%>, Score: <%=@user.round_score(round)%></li>
         <% end %>
-      <ul>
+      </ul>
   </div>
 
   <div class = "hero-unit">
     <h3>Choose Game</h3>
     <ul>
       <% @deck.each do |deck|%>
-      <li><a href=/<%=@user.id%>/<%=deck.category%>/round/new><%=deck.category%></a></li>
+      <li><a href=/<%=@user.id%>/<%=deck.id%>/round/new><%=deck.category%></a></li>
       <%end %>
     </ul>
   </div>
@@ -23,3 +23,4 @@
 
   <span class="errors"><%= @error %></span>
 </div>
+
