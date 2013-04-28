@@ -4,7 +4,7 @@ get "/round" do
 
 end
 
-gets '/user/:deck_id/round/new' do
+get '/user/:deck_id/round/new' do
   @user = current_user
   @round = Round.create(user_id: @user.id, deck_id: params[:deck_id])
   session[:round] = @round.id
