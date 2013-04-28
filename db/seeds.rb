@@ -1,1 +1,1 @@
-User.create(name: "mike", email: "m@ike.com", password_hash: "123")
+User.create(name: "mike", email: "m@ike.com", password: "viewsonic")
