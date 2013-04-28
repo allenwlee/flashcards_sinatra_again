@@ -43,3 +43,12 @@ get '/:id/profile' do
   erb :profile
 end
 
+# get '/:id/:deck/:round_id' do
+  
+#   @deck = Deck.find_by_category(params[:deck.id])
+#   @round = Round.create(user: @user.id, deck: @deck_id )
+#   erb :round
+
+#   #session[:round] = @round.id
+# end
+
