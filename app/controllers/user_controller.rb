@@ -50,5 +50,13 @@ get '/:user_id/:deck_id/round/new' do
   session[:round] = @round.id 
   erb :round
 
+get '/logout' do
+  session.clear
+  erb :index
 end
+
+get '/_navbar' do
+  erb :_navbar
+end
+
 
