@@ -10,7 +10,16 @@
       <ul>
   </div>
 
-  <a href="/sign_up">Not a member? Click here to sign up!</a>
+  <div class = "hero-unit">
+    <h3>Choose Game</h3>
+    <ul>
+      <% @deck.each do |deck|%>
+      <li><a href=/<%=@user.id%>/<%=deck.category%>/round/new><%=deck.category%></a></li>
+      <%end %>
+    </ul>
+  </div>
+
+
 
   <span class="errors"><%= @error %></span>
 </div>
