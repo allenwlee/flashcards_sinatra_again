@@ -1,6 +1,6 @@
 <h1><%= @deck.category %></h1>
 <% first = true %>
-<ul>
+<ul class="flashcard">
   <% @deck.cards.each do |card| %>
   <% if first == true %>
     <li class="active">
@@ -24,15 +24,20 @@ $(document).ready(function(){
     event.preventDefault();
     var parent = $(this).parent();
     var data = $(this).serialize()
+    var last = $('.flashcard').children().last()
     $.post('/guess', data)
     .done(function(data){
-      debugger
-      alert("hey");
+      
       parent.removeClass('active');
       parent.addClass("inactive");
-      parent.next().removeClass('inactive')
+      parent.next().removeClass('inactive');
       parent.next().addClass('active');
-    }); 
+      console.log(parent);
+      if (last.hasClass('active')){
+        window.location = '/profile'
+      }
+  
+    });
   });
 });
 

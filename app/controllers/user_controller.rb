@@ -14,7 +14,7 @@ post '/login' do
     if @user.password == params[:user][:password]
       puts "Logging in."
       session[:id] = @user.id  #maybe we can store session identification another way
-      redirect "/#{@user.id}/profile"
+      redirect "/profile"
     else
       @error = "Invalid Password"
       erb :index
@@ -29,14 +29,14 @@ post '/sign_up' do
   @user = User.create(params[:user])
   if @user.valid?
     session[:id] = @user.id
-    redirect "/#{@user.id}/profile"
+    redirect "/profile"
   else
     @error = "invalid user creation"
     erb :index
   end
 end
 
-get '/:id/profile' do
+get '/profile' do
   @user = User.find(session[:id])
   @deck = Deck.all
   
@@ -49,6 +49,7 @@ get '/:user_id/:deck_id/round/new' do
   @round = Round.create(user_id: params[:user_id], deck_id: params[:deck_id] )
   session[:round] = @round.id 
   erb :round
+end
 
 get '/logout' do
   session.clear
