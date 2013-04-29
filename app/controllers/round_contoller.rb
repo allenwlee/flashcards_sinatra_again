@@ -15,11 +15,10 @@ post '/guess' do
   @card = Card.find(params[:card][:id])
   @round = Round.find(session[:round])
   if params[:user_input].downcase == @card.answer.downcase
-    puts "Successs!"
     @guess = Guess.create(attempt: 1, card_id: @card.id, round_id: session[:round])
   else
     @guess =Guess.create(attempt: 0, card_id: @card.id, round_id: session[:round])
   end
   @round.guesses << @guess
-  # redirect "/:user_id/:deck_id/round/#{session[:round]}"
+  @guess.attempt.to_s
 end

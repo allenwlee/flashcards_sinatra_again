@@ -27,7 +27,8 @@ $(document).ready(function(){
     var last = $('.flashcard').children().last()
     $.post('/guess', data)
     .done(function(data){
-      
+      parent.append(data)
+      setTimeout(function(){
       parent.removeClass('active');
       parent.addClass("inactive");
       parent.next().removeClass('inactive');
@@ -37,6 +38,7 @@ $(document).ready(function(){
         window.location = '/profile'
       }
   
+    }, 2000);
     });
   });
 });
